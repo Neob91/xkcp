@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+import collections
+import os.path
+import secrets
+
+root = os.path.dirname(__file__)
+symbols = '!#$%&()*+,-./:;<=>?@[\\]^_{}~'
+
+def run(count_words=6, count_numbers=2, count_symbols=1):
+    with open(os.path.join(root, "words")) as fd:
+        words = sorted(set(filter(None, fd.read().split("\n"))))
+
+    parts = collections.defaultdict(str)
+
+    for __ in range(count_numbers):
+        #index = secrets.randbelow(count_words + 1)
+        index = count_words
+        parts[index] += f"{secrets.randbelow(10)}"
+
+    for __ in range(count_symbols):
+        index = count_words
+        #index = secrets.randbelow(count_words + 1)
+        parts[index] += f"{secrets.choice(symbols)}"
+
+    for index in range(count_words):
+        parts[index] += secrets.choice(words).capitalize()
+
+    return "".join(parts[key] for key in sorted(parts.keys()))
+
+
+if __name__ == "__main__":
+    print(run())
