@@ -7,7 +7,7 @@ root = os.path.dirname(__file__)
 symbols = '!#$%&()*+,-./:;<=>?@[\\]^_{}~'
 
 def run(count_words=6, count_numbers=2, count_symbols=1):
-    with open(os.path.join(root, "words")) as fd:
+    with open(os.path.join(root, "../share/dict/xkcp")) as fd:
         words = sorted(set(filter(None, fd.read().split("\n"))))
 
     parts = collections.defaultdict(str)
