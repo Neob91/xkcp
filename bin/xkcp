@@ -2,6 +2,7 @@
 import collections
 import os.path
 import secrets
+import sys
 
 root = os.path.dirname(__file__)
 symbols = '!#$%&()*+,-./:;<=>?@[\\]^_{}~'
@@ -29,4 +30,4 @@ def run(count_words=6, count_numbers=2, count_symbols=1):
 
 
 if __name__ == "__main__":
-    print(run())
+    print(run(*map(int, sys.argv[1:])))
