@@ -7,7 +7,7 @@ import sys
 root = os.path.dirname(__file__)
 symbols = '!#$%&()*+,-./:;<=>?@[\\]^_{}~'
 
-def run(count_words=6, count_numbers=2, count_symbols=1):
+def run(count_words=6, count_numbers=2, count_symbols=1, count_spaces=0):
     with open(os.path.join(root, "../share/dict/xkcp")) as fd:
         words = sorted(set(filter(None, fd.read().split("\n"))))
 
@@ -26,7 +26,7 @@ def run(count_words=6, count_numbers=2, count_symbols=1):
     for index in range(count_words):
         parts[index] += secrets.choice(words).capitalize()
 
-    return "".join(parts[key] for key in sorted(parts.keys()))
+    return (" " * count_spaces).join(parts[key] for key in sorted(parts.keys()))
 
 
 if __name__ == "__main__":
